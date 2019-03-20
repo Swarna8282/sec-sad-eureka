@@ -1,0 +1,25 @@
+---
+server:
+  port: 8761
+
+spring:
+  application:
+    name: sad-eureka
+  security:
+    user:
+      name: eurekaAdmin
+      password: eurekaAdmin
+
+logging:
+  level:
+    com.fedex.sad: DEBUG
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    region: default
+    serviceUrl:
+      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@${eureka.instance.hostname}:${server.port}/eureka/
+    registerWithEureka: false
+    fetchRegistry: false
